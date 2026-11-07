@@ -1,0 +1,22 @@
+<service>
+  <id>UniversalServiceManager</id>
+  <name>Universal Service Manager</name>
+  <description>Starts and supervises local application services.</description>
+
+  <executable>D:\Drive-1\Shah-Secret-Project\Universal-Service-Monitor\service_manager\.venv\Scripts\python.exe</executable>
+  <arguments>main.py</arguments>
+  <workingdirectory>D:\Drive-1\Shah-Secret-Project\Universal-Service-Monitor\service_manager</workingdirectory>
+
+  <startmode>Automatic</startmode>
+  <delayedAutoStart />
+
+  <stoptimeout>60sec</stoptimeout>
+  <stopparentprocessfirst>true</stopparentprocessfirst>
+
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+  <onfailure action="restart" delay="1 min" />
+  <resetfailure>1 hour</resetfailure>
+
+  <log mode="roll" />
+</service>
