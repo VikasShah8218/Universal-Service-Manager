@@ -4,3 +4,14 @@ py cli.py status
 py cli.py logs shah-nvr media-node -f             # live logs
 py cli.py restart shah-nvr nvr-client             # one service
 py cli.py down shah-nvr                           # stop all
+
+
+
+---------USM Server -windows service command ------------
+
+usm-service.exe install
+usm-service.exe start
+usm-service.exe status
+usm-service.exe stop
+usm-service.exe restart
+usm-service.exe uninstall

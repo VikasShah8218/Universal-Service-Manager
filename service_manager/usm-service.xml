@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service>
+  <!-- Stable identity used by the Windows Service Control Manager. -->
+  <id>UniversalServiceManager</id>
+  <name>Universal Service Manager</name>
+  <description>Runs the local USM API and supervises configured application services.</description>
+
+  <!--
+    A Windows service cannot run `workon usm`. It launches the interpreter
+    belonging to that environment directly.
+  -->
+  <executable>C:\Users\Mr. Shah\Envs\usm\Scripts\python.exe</executable>
+  <arguments>main.py</arguments>
+  <workingdirectory>C:\Program Files\Universal Service Manager\service_manager</workingdirectory>
+
+  <!-- Keep mutable state out of the protected Program Files directory. -->
+  <env name="DATA_DIR" value="C:\ProgramData\Universal Service Manager" />
+  <env name="PYTHONUTF8" value="1" />
+  <env name="PYTHONUNBUFFERED" value="1" />
+  <env name="STOP_SERVICES_ON_EXIT" value="true" />
+
+  <!-- Start after the busiest part of Windows boot. -->
+  <startmode>Automatic</startmode>
+  <delayedAutoStart />
+
+  <!-- Give USM time to stop managed processes cleanly. -->
+  <stoptimeout>60sec</stoptimeout>
+  <stopparentprocessfirst>true</stopparentprocessfirst>
+
+  <!-- Windows Service Control Manager recovery policy. -->
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+  <onfailure action="restart" delay="1 min" />
+  <resetfailure>1 hour</resetfailure>
+
+  <!-- WinSW wrapper logs; USM writes its own manager and service logs to DATA_DIR. -->
+  <logpath>C:\ProgramData\Universal Service Manager\wrapper-logs</logpath>
+  <log mode="roll" />
+</service>
