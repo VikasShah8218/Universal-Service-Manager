@@ -12,7 +12,7 @@ USM is a local, project-oriented process supervisor. A project groups related pr
 
 It can manage different technologies because it launches operating-system commands rather than integrating with each framework. A Python interpreter, Node command, or compiled executable is simply a command plus arguments, working directory, environment, and policies. It does not install those runtimes or application dependencies.
 
-The current product consists of a Python daemon exposing FastAPI REST endpoints and a separate command-line client. There is no React dashboard, remote fleet server, message broker, or WebSocket endpoint in the current implementation.
+The current product consists of a Python daemon exposing FastAPI REST endpoints, a separate command-line client, and a React/TypeScript browser client in `client/`. The browser uses the existing polling API through a same-origin proxy. There is no remote fleet server, message broker, or WebSocket endpoint in the current implementation.
 
 ## 2. System overview
 
@@ -347,9 +347,9 @@ The test source is evidence of intended coverage, not proof that every platform 
 
 Review validation on 2026-11-07: **45 passed in 37.85 seconds on Windows**, using the existing virtual environment. The run emitted one Starlette/httpx deprecation warning. The initial sandboxed attempt could not access pytest's temporary directory; the successful run used approved execution outside the sandbox. POSIX behavior was reviewed in source, not executed on this machine.
 
-Implemented now: local REST/CLI control, saved projects, dependency-aware startup, readiness/health checks, restart policies, process-tree control, re-adoption, file logs, events/audit, configuration helper endpoints, single-instance entry-point protection, and a hang watchdog.
+Implemented now: local web/REST/CLI control, saved projects, dependency-aware startup, readiness/health checks, restart policies, process-tree control, re-adoption, file logs, events/audit, configuration helper endpoints, single-instance entry-point protection, and a hang watchdog.
 
-Planned or absent: React dashboard, WebSocket status/log transport, Task Scheduler/systemd installation, installers, profiles, scheduled service kinds, general automation rules and notifications, secret encryption, native Docker/OS-service adoption, remote fleet management, RBAC, durable command IDs, and central-server synchronization.
+Planned or absent: WebSocket status/log transport, Task Scheduler/systemd installation, installers, profiles, scheduled service kinds, general automation rules and notifications, secret encryption, native Docker/OS-service adoption, remote fleet management, RBAC, durable command IDs, and central-server synchronization.
 
 ## 19. Where to begin when extending the project
 
@@ -359,7 +359,7 @@ Read `main.py` for composition, `app/projects/schemas.py` for the configuration 
 - New action: action schema/router, engine method, supervisor or project operation, audit behavior.
 - New probe: discriminated probe schema, health implementation, permitted health types, launch port inference where relevant.
 - New process platform: implement `Platform`/`ProcessHandle`, select it in `get_platform()`, verify tree cleanup and adoption.
-- Dashboard: consume existing status/config/action/helper routes; status/log push transport still needs implementation.
+- Dashboard additions: extend the typed client API and existing status/config/action/helper integrations; status/log push transport still needs backend implementation.
 - OS startup: add a platform installation layer that launches one daemon with the intended account and data directory.
 
 Preserve the central boundaries: routers handle HTTP, project specs define validated configuration, the engine coordinates projects, supervisors own service lifecycle, and process adapters own platform-specific process mechanics.
