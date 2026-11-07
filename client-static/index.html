@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2e3440">
+  <meta name="description" content="Universal Service Manager — a quiet workspace for your local services.">
+  <title>Overview · USM</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark"><span class="brand-icon" data-icon="layers"></span>USM</span><span class="brand-description">Universal Service Manager</span></a>
+    <div class="workspace"><span class="machine-icon" data-icon="monitor"></span><div><strong>Local workspace</strong><small>DESKTOP-SHAH</small></div><span class="local-dot"></span></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav aria-label="Main navigation">
+      <a href="#overview" data-page="overview"><span data-icon="overview"></span>Overview</a>
+      <a href="#projects" data-page="projects"><span data-icon="folder"></span>Projects<span class="nav-count">3</span></a>
+      <a href="#services" data-page="services"><span data-icon="layers"></span>Services<span class="nav-count">8</span></a>
+      <a href="#logs" data-page="logs"><span data-icon="terminal"></span>Logs</a>
+      <a href="#events" data-page="events"><span data-icon="activity"></span>Events & audit</a>
+    </nav>
+    <div class="nav-label system-label">SYSTEM</div>
+    <nav aria-label="System navigation"><a href="#settings" data-page="settings"><span data-icon="settings"></span>Settings</a></nav>
+    <div class="sidebar-bottom"><div class="daemon-status"><span class="local-dot"></span><strong>Manager online</strong><span>v0.2.0</span></div><div class="connection">127.0.0.1:7420 <span>Local instance</span></div><div class="preview-note"><span data-icon="info"></span>Static design preview</div></div>
+    <button class="collapse-button" id="collapse-sidebar" aria-label="Collapse sidebar" aria-expanded="true"><span data-icon="menu"></span><span class="collapse-label">Collapse sidebar</span></button>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded="false" id="menu-toggle"><span data-icon="menu"></span></button><span class="connection-pill"><span class="local-dot"></span>Manager online</span><span class="slash">/</span><strong id="breadcrumb-page">Overview</strong></div><div class="topbar-right"><span class="timezone"><span data-icon="clock"></span><span id="clock">14:32:08</span></span><span class="topbar-divider"></span><span class="avatar" title="Local user">S</span></div></header>
+    <main id="main" tabindex="-1"></main>
+    <footer><span><span class="local-dot"></span> All systems observed <span class="footer-separator">·</span> Sample workspace data</span><span>USM <span class="footer-separator">/</span> Built to keep things running.</span></footer>
+  </div>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close navigation" tabindex="-1"></button>
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><a href="#overview" data-mobile-page="overview"><span data-icon="overview"></span>Overview</a><a href="#projects" data-mobile-page="projects"><span data-icon="folder"></span>Projects</a><a href="#services" data-mobile-page="services"><span data-icon="layers"></span>Services</a><a href="#logs" data-mobile-page="logs"><span data-icon="terminal"></span>Logs</a><button id="mobile-more" aria-label="Open more navigation"><span data-icon="menu"></span>More</button></nav>
+  <dialog id="project-dialog"><form id="project-form"><div class="dialog-title"><div><span class="eyebrow">WORKSPACE</span><h2>New project</h2></div><button type="button" class="icon-button" data-close-dialog aria-label="Close dialog"><span data-icon="close"></span></button></div><p>Keep related services together in one project.</p><label>Project name<input name="name" placeholder="e.g. Development tools" required maxlength="60"></label><label>Project ID<input name="id" placeholder="development-tools" required pattern="[a-z0-9][a-z0-9_-]{0,63}" title="Use lowercase letters, numbers, hyphens or underscores."></label><label>Working directory<input name="cwd" placeholder="D:/Projects/development-tools"></label><div class="form-note"><span data-icon="info"></span>This preview adds a sample project in memory only.</div><div class="dialog-actions"><button type="button" class="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Create project</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
