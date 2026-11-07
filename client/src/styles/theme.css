@@ -1,0 +1,50 @@
+/* Central theme controls. Components use semantic Tailwind classes, never palette hex values. */
+:root {
+  color-scheme: dark;
+  --background: #2e3440;
+  --foreground: #eceff4;
+  --card: #3b4252;
+  --sidebar: #272c36;
+  --secondary: #434c5e;
+  --muted: #a9b1c2;
+  --border: #4c566a;
+  --primary: #88c0d0;
+  --primary-foreground: #242933;
+  --success: #a3be8c;
+  --warning: #ebcb8b;
+  --danger: #d7828a;
+  --terminal: #252a34;
+  --radius: 0.625rem;
+}
+
+:root[data-theme='graphite'] {
+  --background: #282d34;
+  --card: #343b44;
+  --sidebar: #22272e;
+  --secondary: #404954;
+  --border: #4c5867;
+  --terminal: #1f242b;
+}
+
+:root[data-accent='teal'] {
+  --primary: #8fc7b5;
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', 'Segoe UI', sans-serif;
+  --font-mono: 'Cascadia Code', Consolas, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-sidebar: var(--sidebar);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-terminal: var(--terminal);
+  --radius-panel: var(--radius);
+}
