@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service>
   <!-- Stable identity used by the Windows Service Control Manager. -->
-  <id>UniversalServiceManager</id>
-  <name>Universal Service Manager</name>
+  <id>ShahUniversalServiceManager</id>
+  <name>Universal Service Manager (Shah)</name>
   <description>Runs the local USM API and supervises configured application services.</description>
 
   <!--
     A Windows service cannot run `workon usm`. It launches the interpreter
     belonging to that environment directly.
   -->
-  <executable>C:\Users\Mr. Shah\Envs\usm\Scripts\python.exe</executable>
+  <executable>python.exe</executable>
+  <!-- <executable>C:\Users\Mr. Shah\Envs\usm\Scripts\python.exe</executable> -->
   <arguments>main.py</arguments>
   <workingdirectory>C:\Program Files\Universal-Service-Manager\service_manager</workingdirectory>
 
@@ -17,7 +18,7 @@
   <env name="DATA_DIR" value="C:\ProgramData\Universal-Service-Manager" />
   <env name="PYTHONUTF8" value="1" />
   <env name="PYTHONUNBUFFERED" value="1" />
-  <env name="STOP_SERVICES_ON_EXIT" value="true" />
+  <env name="STOP_SERVICES_ON_EXIT" value="false" />
 
   <!-- Start after the busiest part of Windows boot. -->
   <startmode>Automatic</startmode>

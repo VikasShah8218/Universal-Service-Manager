@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`. Sign in with the token stored by the daemon in `service_manager/data/token`, or choose **Explore demo** to inspect the interface without contacting the daemon.
+Open `http://127.0.0.1:5156`. Sign in with the token stored by the daemon in `service_manager/data/token`, or choose **Explore demo** to inspect the interface without contacting the daemon.
 
 The token is held in memory by default. “Remember for this tab” uses `sessionStorage`; the client never puts the token in a URL, source file, build setting, or `localStorage`.
 
@@ -21,7 +21,7 @@ To point development at another local daemon, copy `.env.example` to `.env.local
 ## Commands
 
 ```powershell
-npm run dev           # development server on 127.0.0.1:5173
+npm run dev           # development server on 127.0.0.1:5156
 npm run build         # strict TypeScript check and production bundle
 npm run preview       # preview the built static assets
 npm test              # HTTP and log-buffer unit tests

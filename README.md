@@ -277,7 +277,7 @@ services:
         condition: healthy
     readiness:
       type: tcp
-      port: 5173
+      port: 5156
       timeout_s: 60
 ```
 
@@ -374,7 +374,7 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173` and sign in with the contents of `service_manager/data/token`. The development server proxies `/api` to the local daemon, so the browser does not require backend CORS changes.
+Open `http://127.0.0.1:5156` and sign in with the contents of `service_manager/data/token`. The development server proxies `/api` to the local daemon, so the browser does not require backend CORS changes.
 
 The token remains in memory unless **Remember for this tab** is selected. That option uses tab-scoped `sessionStorage`; USM never stores the token in a URL or `localStorage`.
 
