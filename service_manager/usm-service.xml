@@ -11,10 +11,10 @@
   -->
   <executable>C:\Users\Mr. Shah\Envs\usm\Scripts\python.exe</executable>
   <arguments>main.py</arguments>
-  <workingdirectory>C:\Program Files\Universal Service Manager\service_manager</workingdirectory>
+  <workingdirectory>C:\Program Files\Universal-Service-Manager\service_manager</workingdirectory>
 
   <!-- Keep mutable state out of the protected Program Files directory. -->
-  <env name="DATA_DIR" value="C:\Program Files\Universal Service Manager" />
+  <env name="DATA_DIR" value="C:\ProgramData\Universal-Service-Manager" />
   <env name="PYTHONUTF8" value="1" />
   <env name="PYTHONUNBUFFERED" value="1" />
   <env name="STOP_SERVICES_ON_EXIT" value="true" />
@@ -34,6 +34,6 @@
   <resetfailure>1 hour</resetfailure>
 
   <!-- WinSW wrapper logs; USM writes its own manager and service logs to DATA_DIR. -->
-  <logpath>C:\Program Files\Universal Service Manager\wrapper-logs</logpath>
+  <logpath>C:\ProgramData\Universal-Service-Manager\wrapper-logs</logpath>
   <log mode="roll" />
 </service>
