@@ -1,0 +1,56 @@
+# Shah-NVR as a USM project.
+#
+# Register (from the service_manager folder, with the manager running):
+#   py cli.py import ..\examples\shah-nvr.usm.yaml
+# Start / status / stop:
+#   py cli.py up shah-nvr --wait
+#   py cli.py status
+#   py cli.py down shah-nvr
+#
+# Note: USM does not "workon" a virtualenv. It runs the python.exe INSIDE the
+# env directly, which is exactly what `workon nvr` + `py main.py` does.
+
+id: shah-nvr
+name: Shah NVR
+autostart: false                     # true = start when the computer boots
+cwd: "D:/Drive-1/Shah-Secret-Project/Shah-NVR"
+
+services:
+  # 1. (nvr) ...\central_manager> py main.py
+  - id: central-manager
+    command: ["C:/Users/Mr. Shah/Envs/nvr/Scripts/python.exe", "main.py"]
+    cwd: central_manager
+    readiness:                       # "started" = its API answers
+      type: http
+      url: "http://127.0.0.1:8000/"
+      timeout_s: 60
+    health_checks:                   # checked every 10 s; 3 fails in a row -> restart
+      - type: http
+        url: "http://127.0.0.1:8000/"
+        interval_s: 10
+        failures: 3
+
+  # 2. (nvr) ...\media_node> py main.py
+  - id: media-node
+    command: ["C:/Users/Mr. Shah/Envs/nvr/Scripts/python.exe", "main.py"]
+    cwd: media_node
+    depends_on: [central-manager]    # starts after central-manager is ready
+    readiness:
+      type: tcp
+      port: 7100
+      timeout_s: 60
+    health_checks:
+      - type: tcp
+        port: 7100
+        interval_s: 10
+        failures: 3
+
+  # 3. ...\nvr_client> npm run dev
+  - id: nvr-client
+    command: [npm, run, dev]
+    cwd: nvr_client
+    depends_on: [central-manager]
+    readiness:
+      type: tcp
+      port: 5180                     # vite.config.ts: server.port
+      timeout_s: 60

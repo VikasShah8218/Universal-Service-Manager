@@ -1,0 +1,6 @@
+py cli.py import ..\examples\shah-nvr.usm.yaml    # register (run again after editing the YAML)
+py cli.py up shah-nvr --wait                      # start all 3
+py cli.py status
+py cli.py logs shah-nvr media-node -f             # live logs
+py cli.py restart shah-nvr nvr-client             # one service
+py cli.py down shah-nvr                           # stop all
